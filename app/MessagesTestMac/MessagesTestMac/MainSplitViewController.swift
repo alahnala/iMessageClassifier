@@ -187,7 +187,8 @@ class MainSplitViewController: NSSplitViewController {
         config.readonly = true
         config.trace = { print($0) }
         do {
-            dbQueue = try DatabaseQueue(path: "/Users/Maxim/Desktop/chat.db", configuration: config)
+            let homeDirectory = NSHomeDirectory()
+            dbQueue = try DatabaseQueue(path: "\(homeDirectory)/Desktop/chat.db", configuration: config)
             
 //            handles = dbQueue.inDatabase { db in
 //                Handle.fetchAll(db, "SELECT * FROM handle")
