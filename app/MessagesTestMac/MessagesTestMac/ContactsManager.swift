@@ -12,6 +12,7 @@ import Contacts
 class ContactsManager {
     
     static let sharedManager = ContactsManager()
+    let contactStore = CNContactStore()
     
     var contacts = [CNContact]()
     
@@ -50,17 +51,40 @@ class ContactsManager {
         return nil
     }
     
-    func getContacts() {
-        let store = CNContactStore()
+    
+    func requestForAccess(completionHandler: @escaping (_ accessGranted: Bool) -> Void) {
+        let authorizationStatus = CNContactStore.authorizationStatus(for: CNEntityType.contacts)
         
-        if CNContactStore.authorizationStatus(for: .contacts) == .notDetermined {
-            store.requestAccess(for: .contacts, completionHandler: { (authorized: Bool, error: NSError?) -> Void in
-                if authorized {
-                    self.retrieveContactsWithStore(store)
+        switch authorizationStatus {
+        case .authorized:
+            completionHandler(true)
+            
+        case .denied, .notDetermined:
+            self.contactStore.requestAccess(for: CNEntityType.contacts, completionHandler: { (access, accessError) -> Void in
+                if access {
+                    completionHandler(access)
                 }
-                } as! (Bool, Error?) -> Void)
-        } else if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
-            self.retrieveContactsWithStore(store)
+                else {
+                    if authorizationStatus == CNAuthorizationStatus.denied {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            let message = "\(accessError!.localizedDescription)\n\nPlease allow the app to access your contacts through the Settings."
+                            print(message)
+                        })
+                    }
+                }
+            })
+            
+        default:
+            completionHandler(false)
+        }
+    }
+    
+    func getContacts() {
+        
+        self.requestForAccess { (accessGranted) in
+            if CNContactStore.authorizationStatus(for: .contacts) == .authorized {
+                self.retrieveContactsWithStore(self.contactStore)
+            }
         }
     }
     
