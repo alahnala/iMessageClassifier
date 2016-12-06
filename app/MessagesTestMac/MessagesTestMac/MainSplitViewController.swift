@@ -256,6 +256,13 @@ extension MainSplitViewController: ConversationsViewControllerDelegate {
             return message.dictionaryForJSON
         }
         pythonHelper.saveToFile(data: messagesAsJSONArray)
+        pythonHelper.runScript { output in
+            if output != nil {
+                print(output!)
+            } else {
+                print("error running script")
+            }
+        }
     }
 }
 

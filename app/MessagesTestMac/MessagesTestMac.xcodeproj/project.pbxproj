@@ -15,6 +15,7 @@
 		9442E10A1DE142840024B42E /* MessageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442E1091DE142840024B42E /* MessageTableCell.swift */; };
 		9442E1481DE2AB5D0024B42E /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442E1471DE2AB5D0024B42E /* ContactsManager.swift */; };
 		94559B001DF6F94E0037914A /* PythonScriptHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559AFF1DF6F94E0037914A /* PythonScriptHelper.swift */; };
+		94559B121DF7024A0037914A /* test.py in Resources */ = {isa = PBXBuildFile; fileRef = 94559B111DF7024A0037914A /* test.py */; };
 		94B7514A1DE65BCE00BE075D /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B751491DE65BCE00BE075D /* FlippedClipView.swift */; };
 		94B7515C1DE65D7100BE075D /* MessageStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B7515B1DE65D7100BE075D /* MessageStatistics.swift */; };
 		94E1FBA31DE64BE10073427E /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E1FBA21DE64BE10073427E /* MainWindowController.swift */; };
@@ -165,6 +166,7 @@
 		9442E1471DE2AB5D0024B42E /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		9442E1491DE2AB6A0024B42E /* MessagesTestMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesTestMac.entitlements; sourceTree = "<group>"; };
 		94559AFF1DF6F94E0037914A /* PythonScriptHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PythonScriptHelper.swift; sourceTree = "<group>"; };
+		94559B111DF7024A0037914A /* test.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test.py; sourceTree = "<group>"; };
 		94B751491DE65BCE00BE075D /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		94B7515B1DE65D7100BE075D /* MessageStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStatistics.swift; sourceTree = "<group>"; };
 		94E1FBA21DE64BE10073427E /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				942178681DB5DAC5000FB4B8 /* Info.plist */,
 				94FAF8451DE037AA00431955 /* GRDB.xcodeproj */,
 				94559AFF1DF6F94E0037914A /* PythonScriptHelper.swift */,
+				94559B111DF7024A0037914A /* test.py */,
 			);
 			path = MessagesTestMac;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94559B121DF7024A0037914A /* test.py in Resources */,
 				942178641DB5DAC5000FB4B8 /* Assets.xcassets in Resources */,
 				942178671DB5DAC5000FB4B8 /* Main.storyboard in Resources */,
 			);
