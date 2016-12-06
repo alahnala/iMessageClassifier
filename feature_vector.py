@@ -1,18 +1,23 @@
 import nltk
 import sys
+<<<<<<< HEAD
+=======
 import re
 from Unicode import *
 # from dicts import *
+>>>>>>> bfb3b4ebef2ce724b4322169c6c60d72f24ee255
 from sklearn import preprocessing
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
+from process_training import *
+
 
 def make_feature_vector(items, vocab, feature_vector, labels):
     le = preprocessing.LabelEncoder()
     le.fit(list(corpus))
     for i in range(len(items) - 1):
-        for j, token in enumerate(items[i].split()):
-            features = [0] * 5
+        for j, token in enumerate(nltk.word_tokenize(items[i])):
+            features = [0] * 4
 
             #Feature 1. the value of the token
             tok = token[:-2]
@@ -45,3 +50,27 @@ def make_feature_vector(items, vocab, feature_vector, labels):
             feature_vector.append(features)
             del features
             labels.append(token[-2:])
+
+
+sentiment, tweets = get_training_data2()
+corpus = make_corpus(tweets)
+unigram_scores = get_unigram_scores()
+
+training_index = {}
+index_tweets(tweets, training_index)
+
+df_dict = {}
+make_df_dict(tweets, training_index, df_dict)
+
+idf_df = {}
+make_idf_dict(tweets, training_index, df_dict, idf_dict)
+
+
+
+
+#print len(training)       
+
+
+
+
+
