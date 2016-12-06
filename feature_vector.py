@@ -1,7 +1,8 @@
 import nltk
 import sys
 import re
-from dicts import *
+from Unicode import *
+# from dicts import *
 from sklearn import preprocessing
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
@@ -11,7 +12,7 @@ def make_feature_vector(items, vocab, feature_vector, labels):
     le.fit(list(corpus))
     for i in range(len(items) - 1):
         for j, token in enumerate(items[i].split()):
-            features = [0] * 4
+            features = [0] * 5
 
             #Feature 1. the value of the token
             tok = token[:-2]
@@ -25,6 +26,10 @@ def make_feature_vector(items, vocab, feature_vector, labels):
             #Feature 3. does the token start with capital?
             cap = int(tok[0].isupper())
             features[2] = cap
+
+            # Feature 4. is the word an emoji?
+            features[3] = unicode(val) in unicode_chars
+            print features[3]
 
             #Feature 6. is labeled positive by saifmohammad
             eecsword = isEECSword(tok.lower())
@@ -40,6 +45,3 @@ def make_feature_vector(items, vocab, feature_vector, labels):
             feature_vector.append(features)
             del features
             labels.append(token[-2:])
-
-
-            
