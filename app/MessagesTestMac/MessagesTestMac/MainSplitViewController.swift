@@ -140,6 +140,20 @@ class Message: Record {
     override func didInsert(with rowID: Int64, for column: String?) {
         self.rowID = rowID
     }
+    
+    /// Dictionary for writing JSON
+    var dictionaryForJSON: Dictionary<String, NSObject> {
+        get {
+            return [
+                "rowID": NSNumber(value: self.rowID!),
+                "guid": self.guid as NSString,
+                "text": (self.text ?? "") as NSString,
+                "handleID": NSNumber(value: self.rowID!),
+                "date": self.date.timeIntervalSinceReferenceDate as NSNumber,
+                "isFromMe": NSNumber(value: self.isFromMe)
+            ]
+        }
+    }
 }
 
 class MainSplitViewController: NSSplitViewController {
@@ -236,6 +250,12 @@ extension MainSplitViewController: ConversationsViewControllerDelegate {
         self.messagesListViewController.chat = chat
         self.detailsViewController.messageStatistics = MessageStatistics(messages: self.messages)
         self.detailsViewController.chat = chat
+        
+        let pythonHelper = PythonScriptHelper()
+        let messagesAsJSONArray = self.messages.map { message in
+            return message.dictionaryForJSON
+        }
+        pythonHelper.saveToFile(data: messagesAsJSONArray)
     }
 }
 
