@@ -49,13 +49,14 @@ def get_training_data2():
 	print("Training data collected.");
 	return Sentiment, SentimentText
 
-def get_unigram_scores():
+def get_unigram_scores(corpus):
 	print("Getting unigram scores..");
 	unigram_scores = {}
 	source_file = open("unigrams.txt", 'rb')
 	for line in source_file:
 		if line[0] != '@':
 			unigram_scores[line.split()[0]] = line.split()[1]
+			add_to_corpus(corpus, line.split()[0])
 	return unigram_scores
 	print("unigram_scores dictionary created");
 
@@ -94,13 +95,18 @@ def index_tweets(tweets, invert_index):
 	print("Tweets indexed...");
 
 def make_df_dict(tweets, invert_index, df_dict):
+	print("making df dict...");
 	for token in invert_index:
 		df_dict[token] = len(invert_index[token])
+	print("df dict created");
 
 def make_idf_dict(tweets, invert_index, df_dict, idf_dict):
+	print("making idf dict...");
 	for term in invert_index:
 		idf = math.log10(len(tweets) / df_dict[term] + 1)
 		idf_dict[term] = idf
+	print("idf dict created");
+
 
 
 

@@ -50,7 +50,7 @@ def make_feature_vector(items, vocab, feature_vector, labels):
 
 sentiment, tweets = get_training_data2()
 corpus = make_corpus(tweets)
-unigram_scores = get_unigram_scores()
+unigram_scores = get_unigram_scores(corpus)
 
 training_index = {}
 index_tweets(tweets, training_index)
@@ -61,7 +61,7 @@ make_df_dict(tweets, training_index, df_dict)
 
 idf_dict = {}
 make_idf_dict(tweets, training_index, df_dict, idf_dict)
-print idf_dict
+
 
 
 
