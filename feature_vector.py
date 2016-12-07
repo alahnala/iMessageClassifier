@@ -20,7 +20,10 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
             if token in features:
                 #this is for the tfidf scheme
                 tfidf = invert_index[token][tweet] * idf_dict[token]
-                features[token] = unigram_scores[token] * tfidf
+                if token in unigram_scores:
+                    features[token] = unigram_scores[token] * tfidf
+                elif token in unicode_scores:
+                    features[token] = unigram_scores[token] * tfidf                    
 
 
         # #abbrev, sl, and conj are my feature choices
@@ -40,6 +43,7 @@ corpus = make_corpus(tweets)
 unigram_scores = get_unigram_scores(corpus)
 
 
+
 training_index = {}
 index_tweets(tweets, training_index)
 
@@ -53,7 +57,8 @@ make_idf_dict(tweets, training_index, df_dict, idf_dict)
 #make set intersection for feature vector
 test_unigrams = Set(corpus.keys())
 NRC_unigrams = Set(unigram_scores.keys())
-features = list(test_unigrams & NRC_unigrams)
+unicode_unigrams = Set(unicode_scores.keys())
+features = list(test_unigrams & NRC_unigrams & unicode_unigrams)
 
 training_vector = []
 training_labels = []
