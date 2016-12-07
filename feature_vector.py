@@ -13,8 +13,9 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
     print("Making feature vector...");
     le = preprocessing.LabelEncoder()
     le.fit(list(corpus))
+
     for tweet in tweets:
-        features = dict.fromkeys(uni_features)
+        features = dict.fromkeys(uni_features, 0)
 
         for token in word_tokenize(tweets[tweet].decode('utf-8')):
             if token in features:
@@ -32,9 +33,10 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
         # num = int(unicode(L, 'utf-8').isnumeric()) #if is number
         # features.append(sl)    
 
-        feature_vector.append(features)
+        feature_vector.append(features.values())
         del features
         labels.append(sentiment[tweet])
+    #print feature_vector
     print("Feature vector complete");
 
 
@@ -58,7 +60,11 @@ make_idf_dict(tweets, training_index, df_dict, idf_dict)
 test_unigrams = Set(corpus.keys())
 NRC_unigrams = Set(unigram_scores.keys())
 unicode_unigrams = Set(unicode_scores.keys())
-features = list(test_unigrams & NRC_unigrams & unicode_unigrams)
+
+features = list(test_unigrams & NRC_unigrams)
+
+# features = list(test_unigrams & NRC_unigrams & unicode_unigrams)
+# print "featutes with unicode added", features
 
 training_vector = []
 training_labels = []
