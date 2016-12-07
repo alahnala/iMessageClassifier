@@ -55,8 +55,7 @@ def get_unigram_scores(corpus):
 	source_file = open("unigrams.txt", 'rb')
 	for line in source_file:
 		if line[0] != '@':
-			unigram_scores[line.split()[0]] = line.split()[1]
-			add_to_corpus(corpus, line.split()[0])
+			unigram_scores[line.split()[0]] = float(line.split()[1])
 	return unigram_scores
 	print("unigram_scores dictionary created");
 
