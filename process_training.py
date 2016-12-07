@@ -1,7 +1,7 @@
 from nltk import word_tokenize
 import csv
 import sys
-
+import math
 #training data format
 #ItemID,Sentiment,SentimentSource,SentimentText
 
@@ -77,14 +77,14 @@ def make_corpus(SentimentText):
 	return corpus
 
 def indexDocument(tweet_id, tweet, invert_index):
-	for token in tweet:
-		if invert_index.has_key(token):
-			if invert_index[token].has_key(tweet_id):
-				invert_index[token][tweet_id] = invert_index[token][tweet_id] + 1
+	for token in word_tokenize(tweet.decode('utf-8')):
+		if invert_index.has_key(token.lower()):
+			if invert_index[token.lower()].has_key(tweet_id):
+				invert_index[token.lower()][tweet_id] = invert_index[token.lower()][tweet_id] + 1
 			else:
-				invert_index[token][tweet_id] = 1
+				invert_index[token.lower()][tweet_id] = 1
 		else:
-			invert_index[token] = {tweet_id: 1}
+			invert_index[token.lower()] = {tweet_id: 1}
 
 def index_tweets(tweets, invert_index):
 	print("Indexing tweets...");
@@ -99,7 +99,7 @@ def make_df_dict(tweets, invert_index, df_dict):
 
 def make_idf_dict(tweets, invert_index, df_dict, idf_dict):
 	for term in invert_index:
-		idf = math.log10(1400 / df_dict[term])
+		idf = math.log10(len(tweets) / df_dict[term] + 1)
 		idf_dict[term] = idf
 
 

@@ -1,11 +1,7 @@
 import nltk
 import sys
-<<<<<<< HEAD
-=======
 import re
 from Unicode import *
-# from dicts import *
->>>>>>> bfb3b4ebef2ce724b4322169c6c60d72f24ee255
 from sklearn import preprocessing
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
@@ -59,11 +55,13 @@ unigram_scores = get_unigram_scores()
 training_index = {}
 index_tweets(tweets, training_index)
 
+
 df_dict = {}
 make_df_dict(tweets, training_index, df_dict)
 
-idf_df = {}
+idf_dict = {}
 make_idf_dict(tweets, training_index, df_dict, idf_dict)
+print idf_dict
 
 
 
