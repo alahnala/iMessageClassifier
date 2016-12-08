@@ -1,42 +1,46 @@
 import csv, sys, json, nltk
 
-messages = {}
-senders = {}
-message_corpus = {} 
+def read_input(filename="messages.json"):
+	messages = {}
+	senders = {}
+	message_corpus = {}
+	conversation_file = open(filename, 'r')
+	conversation_content = conversation_file.read()
+	json_conversation = json.loads(conversation_content)
+	for message_object in json_conversation: 
+		if message_object['isFromMe'] == "false": 
+			sender = message_object['handleID']
+		else: 
+			sender = 0
 
-filename = sys.argv[1]
-conversation_file = open(filename, 'r')
-conversation_content = conversation_file.read()
-json_conversation = json.loads(conversation_content)
+		message_id = message_object['rowID']
+		message_text = message_object['text']
 
-def get_messages(): 
-	print messages
-	return messages
+		messages[message_id] = message_text.encode('utf-8')
+		senders[message_id] = sender 
 
-def get_senders(): 
-	print senders
-	return senders
+		for word in nltk.word_tokenize(message_text): 
+			if word not in message_corpus: 
+				message_corpus[word] = 0
+			message_corpus[word] += 1
+	return messages, senders, message_corpus
 
-def get_corpus(): 
-	print message_corpus
-	return message_corpus
+# def get_messages(): 
+# 	print messages
+# 	return messages
 
-for message_object in json_conversation: 
-	if message_object['isFromMe'] == "false": 
-		sender = message_object['handleID']
-	else: 
-		sender = 0
+# def get_senders(): 
+# 	print senders
+# 	return senders
 
-	message_id = message_object['rowID']
-	message_text = message_object['text']
+# def get_corpus(): 
+# 	print message_corpus
+# 	return message_corpus
 
-	messages[message_id] = message_text.encode('utf-8')
-	senders[message_id] = sender 
+def main():
+	filename = sys.argv[1]
+	read_input(filename)
 
-	for word in word_tokenizer(message_text): 
-		if word not in message_corpus: 
-			message_corpus[word] = 0
-		message_corpus[word] += 1
-
-get_messages(); 
+if __name__ == '__main__':
+	main()
 

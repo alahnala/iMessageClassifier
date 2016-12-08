@@ -44,7 +44,7 @@ def get_training_data2():
 		Sentiment[ItemID] = int(line['Sentiment'])
 		SentimentText[ItemID] = line['SentimentText\r\n']
 		i += 1
-		if i == 10000: 
+		if i == 500: 
 			break
 	print("Training data collected.");
 	return Sentiment, SentimentText
