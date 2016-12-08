@@ -81,7 +81,11 @@ dists, inds = nbrs.kneighbors(Z)
 f = open('labeled_messages.txt','w')
 j = 0
 for message in messages:
-    line += messages[message] + ' ' + labels[inds[j]]
+    if labels[inds[j]] == 0:
+        sentiment = "Negative"
+    else:
+       sentiment = "Positive" 
+    line += messages[message] + ' ' + sentiment
     line += '\n'
     j+=1
     f.write(line)
