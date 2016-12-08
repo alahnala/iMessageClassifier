@@ -148,7 +148,7 @@ class Message: Record {
                 "rowID": NSNumber(value: self.rowID!),
                 "guid": self.guid as NSString,
                 "text": (self.text ?? "") as NSString,
-                "handleID": NSNumber(value: self.rowID!),
+                "handleID": NSNumber(value: self.handleID!),
                 "date": self.date.timeIntervalSinceReferenceDate as NSNumber,
                 "isFromMe": NSNumber(value: self.isFromMe)
             ]
