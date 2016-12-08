@@ -64,6 +64,7 @@ make_feature_vector(tweets, features, training_vector, sentiment, training_label
 
 test_vector = []
 tmp = []
+messages = get_messages()
 make_feature_vector(messages, features, test_vector, sentiment, tmp, training_index, idf_dict, unigram_scores, "testing")
 
 def mydist(x, y, **kwargs):
