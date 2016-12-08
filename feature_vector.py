@@ -20,10 +20,7 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
                 #this is for the tfidf scheme
                 tfidf = invert_index[token][tweet] * idf_dict[token]
                 if token in unigram_scores:
-                    features[token] = unigram_scores[token] * tfidf
-                elif token in unicode_scores:
-                    features[token] = unigram_scores[token] * tfidf                    
-
+                    features[token] = unigram_scores[token] * tfidf                  
 
         feature_vector.append(features.values())
         del features
