@@ -24,19 +24,11 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
                 if token in unigram_scores:
                     features[token] = unigram_scores[token] * tfidf
                 elif token in unicode_scores:
-                    features[token] = unigram_scores[token] * tfidf                    
-
-
-        # #abbrev, sl, and conj are my feature choices
-        # abbrev = is_abbreviation(word) #want word included with period
-        # sl = sentence_len_constaint(i, last_index) #senctence lenght, includes , and ; though
-        # num = int(unicode(L, 'utf-8').isnumeric()) #if is number
-        # features.append(sl)    
+                    features[token] = unigram_scores[token] * tfidf                      
 
         feature_vector.append(features.values())
         del features
         labels.append(sentiment[tweet])
-    #print feature_vector
     print("Feature vector complete");
 
 
