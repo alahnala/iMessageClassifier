@@ -20,10 +20,7 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
         for token in word_tokenize(tweets[tweet].decode('utf-8')):
             if token in features:
                 #this is for the tfidf scheme
-                try:
-                    tfidf = invert_index[token][tweet] * idf_dict[token]
-                except:
-                    tfidf = 1
+                tfidf = invert_index[token][tweet] * idf_dict[token]
                 if token in unigram_scores:
                     features[token] = unigram_scores[token] * tfidf                  
 
@@ -57,6 +54,16 @@ make_idf_dict(tweets, training_index, df_dict, idf_dict)
 
 #iMessage corpus
 messages, senders, message_corpus = read_input(messages_filename)
+test_index = {}
+index_tweets(messages, test_index)
+
+
+test_df_dict = {}
+make_df_dict(tweets, test_index, test_df_dict)
+
+test_idf_dict = {}
+make_idf_dict(tweets, test_index, test_df_dict, test_idf_dict)
+
 
 #make set intersection for feature vector
 test_unigrams = Set(corpus.keys())
@@ -78,7 +85,7 @@ make_feature_vector(tweets, features, training_vector, sentiment, training_label
 
 test_vector = []
 tmp = []
-make_feature_vector(messages, features, test_vector, sentiment, tmp, training_index, idf_dict, unigram_scores, "testing")
+make_feature_vector(messages, features, test_vector, sentiment, tmp, test_index, test_idf_dict, unigram_scores, "testing")
 
 def mydist(x, y, **kwargs):
     return np.sum((x-y)**kwargs["power"])
@@ -91,7 +98,8 @@ nbrs.fit(X, Y)
 Z = np.array(test_vector)
 dists, inds = nbrs.kneighbors(Z)
 
-f = open('labeled_messages.json','w')
+text_file = open('labeled_messages.txt','w')
+json_file = open('labeled_messages.json','w')
 j = 0
 output_data = []
 for message in messages:
@@ -106,10 +114,10 @@ for message in messages:
     line += messages[message] + ' ' + sentiment
     line += '\n'
     j+=1
-    # f.write(line)
+    text_file.write(line)
     output_data.append(output_message)
 
-f.write(json.dumps(output_data))
+json_file.write(json.dumps(output_data))
 
 
 #make feature vector for 
