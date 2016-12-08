@@ -849,29 +849,50 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="MessageCell" id="L6F-dD-EHc" customClass="MessageTableCell" customModule="MessagesTestMac" customModuleProvider="target">
+                                                        <tableCellView identifier="MessageCell" misplaced="YES" id="L6F-dD-EHc" customClass="MessageTableCell" customModule="MessagesTestMac" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="445" height="39"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v3j-sk-pa2">
-                                                                    <rect key="frame" x="4" y="4" width="437" height="31"/>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ieb-Io-R7e">
+                                                                    <rect key="frame" x="4" y="4" width="437" height="39"/>
                                                                     <subviews>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNE-Z9-Y6D">
-                                                                            <rect key="frame" x="-2" y="17" width="29" height="14"/>
-                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date" id="K92-B6-eW6">
-                                                                                <font key="font" metaFont="smallSystem"/>
-                                                                                <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gtk-m1-0jU">
+                                                                            <rect key="frame" x="-2" y="0.0" width="20" height="39"/>
+                                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="•" id="DgC-dh-jnw">
+                                                                                <font key="font" metaFont="system" size="32"/>
+                                                                                <color key="textColor" red="0.5059799223" green="0.7116871843" blue="0.40443055570000003" alpha="0.0" colorSpace="calibratedRGB"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="msl-h4-HlG">
-                                                                            <rect key="frame" x="-2" y="0.0" width="59" height="17"/>
-                                                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="message" id="dG5-jf-txO">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
+                                                                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v3j-sk-pa2">
+                                                                            <rect key="frame" x="20" y="4" width="417" height="31"/>
+                                                                            <subviews>
+                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNE-Z9-Y6D">
+                                                                                    <rect key="frame" x="-2" y="17" width="29" height="14"/>
+                                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date" id="K92-B6-eW6">
+                                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                                        <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                </textField>
+                                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="msl-h4-HlG">
+                                                                                    <rect key="frame" x="-2" y="0.0" width="59" height="17"/>
+                                                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="message" id="dG5-jf-txO">
+                                                                                        <font key="font" metaFont="system"/>
+                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                </textField>
+                                                                            </subviews>
+                                                                            <visibilityPriorities>
+                                                                                <integer value="1000"/>
+                                                                                <integer value="1000"/>
+                                                                            </visibilityPriorities>
+                                                                            <customSpacing>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                            </customSpacing>
+                                                                        </stackView>
                                                                     </subviews>
                                                                     <visibilityPriorities>
                                                                         <integer value="1000"/>
@@ -884,12 +905,13 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="v3j-sk-pa2" firstAttribute="top" secondItem="L6F-dD-EHc" secondAttribute="top" constant="4" id="DUY-k5-Bmb"/>
-                                                                <constraint firstAttribute="bottom" secondItem="v3j-sk-pa2" secondAttribute="bottom" constant="4" id="I67-tN-4RI"/>
-                                                                <constraint firstItem="v3j-sk-pa2" firstAttribute="leading" secondItem="L6F-dD-EHc" secondAttribute="leading" constant="4" id="aat-1h-4R6"/>
-                                                                <constraint firstAttribute="trailing" secondItem="v3j-sk-pa2" secondAttribute="trailing" constant="4" id="rUh-Jl-jcX"/>
+                                                                <constraint firstItem="Ieb-Io-R7e" firstAttribute="top" secondItem="L6F-dD-EHc" secondAttribute="top" constant="4" id="10W-8u-CTo"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Ieb-Io-R7e" secondAttribute="trailing" constant="4" id="XFQ-Ma-Qsa"/>
+                                                                <constraint firstItem="Ieb-Io-R7e" firstAttribute="leading" secondItem="L6F-dD-EHc" secondAttribute="leading" constant="4" id="XeU-bo-Fam"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Ieb-Io-R7e" secondAttribute="bottom" constant="4" id="whW-xw-mSB"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="colorLabel" destination="gtk-m1-0jU" id="isk-qY-POZ"/>
                                                                 <outlet property="dateTextField" destination="gNE-Z9-Y6D" id="T8H-he-HiF"/>
                                                                 <outlet property="messageTextField" destination="msl-h4-HlG" id="VbZ-tu-mDr"/>
                                                                 <outlet property="textField" destination="msl-h4-HlG" id="Gdy-d1-Fee"/>

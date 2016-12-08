@@ -25,11 +25,19 @@ class PythonScriptHelper {
         do {
             try str.write(to: filename, atomically: true, encoding: String.Encoding.utf8)
         } catch {
-            print("Failed to write \(outputFilename)")
+            print("Failed to write \(outputFilename). Error: \(error.localizedDescription)")
         }
     }
     func runScript(completionHandler: (String?) -> Void) {
-        guard let scriptPath = Bundle.main.path(forResource: "test", ofType: "py") else {
+        guard let scriptPath = Bundle.main.path(forResource: "feature_vector", ofType: "py") else {
+            completionHandler(nil)
+            return
+        }
+        guard let sentimentAnalysisDatasetFilePath = Bundle.main.path(forResource: "Sentiment Analysis Dataset", ofType: "csv") else {
+            completionHandler(nil)
+            return
+        }
+        guard let unigramsFilePath = Bundle.main.path(forResource: "unigrams", ofType: "txt") else {
             completionHandler(nil)
             return
         }
@@ -39,6 +47,8 @@ class PythonScriptHelper {
         
         var arguments = [scriptPath]
         arguments.append(messagesFilePath)
+        arguments.append(sentimentAnalysisDatasetFilePath)
+        arguments.append(unigramsFilePath)
 //        arguments.append("--dict")
 //        arguments.append(dictionaryPath)
 //        arguments.append("--pattern")
@@ -60,16 +70,48 @@ class PythonScriptHelper {
         task.launch()
         
         let data = outPipe.fileHandleForReading.readDataToEndOfFile()
+        let errData = errPipe.fileHandleForReading.readDataToEndOfFile()
         task.waitUntilExit()
         
         let exitCode = task.terminationStatus
         if (exitCode != 0) {
             print("ERROR: \(exitCode)")
+            let errOutput = String(data: errData, encoding: String.Encoding.ascii)
+            let output = String(data: data, encoding: String.Encoding.ascii)
+            print(output!)
+            print(errOutput!)
             completionHandler(nil)
             return
         }
         
         let output = String(data: data, encoding: String.Encoding.ascii)
         completionHandler(output)
+    }
+    func getLabels() -> [Int64: BinarySentiment] {
+        let inputFilename = "labeled_messages.json"
+        var labels = [Int64: BinarySentiment]()
+        do {
+            let fileManager = FileManager.default
+            let currentWorkingDirectory = fileManager.currentDirectoryPath
+            let pathString = "\(currentWorkingDirectory)/\(inputFilename)"
+            let path = URL(fileURLWithPath: pathString)
+            let jsonData = try Data(contentsOf: path)
+            let json = JSON(data: jsonData)
+            if let jsonArray = json.array {
+                for jsonMessage in jsonArray {
+                    var sentiment: BinarySentiment
+                    if jsonMessage["sentiment"].stringValue == "Positive" {
+                        sentiment = .Positive
+                    } else {
+                        sentiment = .Negative
+                    }
+                    let rowid = jsonMessage["rowid"].int64Value
+                    labels[rowid] = sentiment
+                }
+            }
+        } catch {
+            print("Failed to read \(inputFilename). Error: \(error.localizedDescription)")
+        }
+        return labels
     }
 }

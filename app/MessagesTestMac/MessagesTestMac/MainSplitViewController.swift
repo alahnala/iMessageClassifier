@@ -104,6 +104,7 @@ class Message: Record {
     var handleID: Int64?
     var date: Date
     var isFromMe: Bool
+    var sentiment: BinarySentiment?
     
     /// The table name
     override class var databaseTableName: String {
@@ -242,6 +243,32 @@ class MainSplitViewController: NSSplitViewController {
     func searchMessages(query: String) {
         self.messagesListViewController.query = query
     }
+    
+    func labelSentimentInMessages(labels: [Int64: BinarySentiment]) {
+        var positiveCount = 0
+        var negativeCount = 0
+        for message in self.messages {
+            if let rowid = message.rowID {
+                if let sentiment = labels[rowid] {
+                    message.sentiment = sentiment
+                    if sentiment == .Positive {
+                        positiveCount += 1
+                    } else {
+                        negativeCount += 1
+                    }
+                }
+            }
+        }
+        self.messagesListViewController.didUpdateSenetimentLabels()
+        self.detailsViewController.messageStatistics?.numberOfPositiveMessages = positiveCount
+        self.detailsViewController.messageStatistics?.numberOfNegativeMessages = negativeCount
+        self.detailsViewController.updateDetails()
+    }
+}
+
+enum BinarySentiment {
+    case Positive
+    case Negative
 }
 
 extension MainSplitViewController: ConversationsViewControllerDelegate {
@@ -255,12 +282,18 @@ extension MainSplitViewController: ConversationsViewControllerDelegate {
         let messagesAsJSONArray = self.messages.map { message in
             return message.dictionaryForJSON
         }
-        pythonHelper.saveToFile(data: messagesAsJSONArray)
-        pythonHelper.runScript { output in
-            if output != nil {
-                print(output!)
-            } else {
-                print("error running script")
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+            pythonHelper.saveToFile(data: messagesAsJSONArray)
+            pythonHelper.runScript { output in
+                if output != nil {
+                    print(output!)
+                    let sentimentLabels = pythonHelper.getLabels()
+                    DispatchQueue.main.async {
+                        self.labelSentimentInMessages(labels: sentimentLabels)
+                    }
+                } else {
+                    print("error running script")
+                }
             }
         }
     }
@@ -425,7 +458,7 @@ extension String {
         
         scalars.append(currentScalarSet)
         
-        return scalars.map { $0.map{ String($0) } .reduce("", +) }
+        return scalars.map { $0.map{ String($0) } .reduce("", +) } .filter { $0.characters.count > 0 }
     }
     
     private var emojiScalars: [UnicodeScalar] {

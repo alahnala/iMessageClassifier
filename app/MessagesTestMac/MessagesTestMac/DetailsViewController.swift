@@ -14,8 +14,6 @@ class DetailsViewController: NSViewController, NSTableViewDataSource, NSTableVie
         didSet {
             if messageStatistics != nil {
                 messageCountLabel.isHidden = false
-                let count = messageStatistics!.numberOfMessages
-                messageCountLabel.stringValue = "\(count) message\(count == 1 ? "" : "s")"
                 updateDetails()
             } else {
                 messageCountLabel.isHidden = true
@@ -71,6 +69,16 @@ class DetailsViewController: NSViewController, NSTableViewDataSource, NSTableVie
     
     func updateUI() {
         if messageStatistics != nil {
+            let count = messageStatistics!.numberOfMessages
+            
+            var positiveNegativeText = ""
+            if messageStatistics!.numberOfPositiveMessages != nil && messageStatistics!.numberOfPositiveMessages != nil {
+                let positivePercentage = messageStatistics!.numberOfPositiveMessages! * 100 / count
+                let negativePercentage = messageStatistics!.numberOfNegativeMessages! * 100 / count
+                positiveNegativeText = " (\(positivePercentage)% positive, \(negativePercentage)% negative)"
+            }
+            
+            messageCountLabel.stringValue = "\(count) message\(count == 1 ? "" : "s")\(positiveNegativeText)"
             if wordSummaryType == .Word {
                 wordSummaryCountLabel.stringValue = "\(messageStatistics!.numberOfWords) Word\(messageStatistics!.numberOfWords == 1 ? "" : "s")"
             } else if wordSummaryType == .Emoji {

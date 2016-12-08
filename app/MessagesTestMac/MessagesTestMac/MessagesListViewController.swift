@@ -51,6 +51,10 @@ class MessagesListViewController: NSViewController {
         return nil
     }
     
+    func didUpdateSenetimentLabels() {
+        self.messagesTableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,6 +91,17 @@ extension MessagesListViewController : NSTableViewDelegate {
                     cell.dateTextField?.stringValue = dateText
                     
                     cell.messageTextField?.stringValue = message.text ?? ""
+                    
+                    cell.sentimentColor = NSColor.clear
+                    if let sentiment = message.sentiment {
+                        switch sentiment {
+                        case .Positive:
+                            cell.sentimentColor = NSColor(red:0.58, green:0.75, blue:0.49, alpha:1.00)
+                        case .Negative:
+                            cell.sentimentColor = NSColor(red:0.75, green:0.22, blue:0.35, alpha:1.00)
+                        }
+                    }
+                    
                     return cell
                 }
             }

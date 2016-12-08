@@ -271,6 +271,8 @@ class MessageStatistics {
     ]
     
     let numberOfMessages: Int
+    var numberOfPositiveMessages: Int?
+    var numberOfNegativeMessages: Int?
     let numberOfWords: Int
     let numberOfEmojis: Int
     var wordCounts = [(word: String, count: Int)]()

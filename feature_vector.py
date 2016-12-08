@@ -2,7 +2,7 @@ import nltk
 import sys
 import re
 import json
-from Unicode import *
+#from Unicode import *
 from sklearn import preprocessing
 from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
@@ -35,9 +35,13 @@ def make_feature_vector(tweets, uni_features, feature_vector, sentiment, labels,
     print state, "feature vector complete."
 
 
-sentiment, tweets = get_training_data2()
+messages_filename = sys.argv[1]
+sentiment_analysis_dataset_filename = sys.argv[2]
+unigrams_filename = sys.argv[3]
+
+sentiment, tweets = get_training_data2(sentiment_analysis_dataset_filename)
 corpus = make_corpus(tweets)
-unigram_scores = get_unigram_scores(corpus)
+unigram_scores = get_unigram_scores(corpus, unigrams_filename)
 
 
 
@@ -52,7 +56,7 @@ idf_dict = {}
 make_idf_dict(tweets, training_index, df_dict, idf_dict)
 
 #iMessage corpus
-messages, senders, message_corpus = read_input(sys.argv[1])
+messages, senders, message_corpus = read_input(messages_filename)
 
 #make set intersection for feature vector
 test_unigrams = Set(corpus.keys())

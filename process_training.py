@@ -6,14 +6,14 @@ import math
 #ItemID,Sentiment,SentimentSource,SentimentText
 
 
-def get_training_data():
+def get_training_data(filename):
 	# source_file = open(NNSRC, 'rb')
 	# header = source_file.readline()
 	# source_file.seek(len(header))  # reset read buffer
 
 	print("Collection training data...");
 	cases = {};
-	infile = "Sentiment Analysis Dataset.csv"
+	infile = filename
 	with open(infile, 'rb') as f:
 		header = f.readline()
 		headers = [h.strip('.') for h in header.split(',')]
@@ -25,14 +25,14 @@ def get_training_data():
 	return Sentiment, SentimentText
 
 
-def get_training_data2():
+def get_training_data2(filename):
 	# source_file = open(NNSRC, 'rb')
 	# header = source_file.readline()
 	# source_file.seek(len(header))  # reset read buffer
 	Sentiment = {}
 	SentimentText = {}
 	print("Collection training data...");
-	source_file = open("Sentiment Analysis Dataset.csv", 'rb')
+	source_file = open(filename, 'rb')
 	header = source_file.readline()
 	source_file.seek(len(header))  # reset read buffer
 
@@ -49,10 +49,10 @@ def get_training_data2():
 	print("Training data collected.");
 	return Sentiment, SentimentText
 
-def get_unigram_scores(corpus):
+def get_unigram_scores(corpus, unigrams_filename):
 	print("Getting unigram scores..");
 	unigram_scores = {}
-	source_file = open("unigrams.txt", 'rb')
+	source_file = open(unigrams_filename, 'rb')
 	for line in source_file:
 		if line[0] != '@':
 			unigram_scores[line.split()[0]] = float(line.split()[1])

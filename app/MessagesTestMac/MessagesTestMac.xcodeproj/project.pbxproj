@@ -11,18 +11,23 @@
 		942178621DB5DAC5000FB4B8 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942178611DB5DAC5000FB4B8 /* MainSplitViewController.swift */; };
 		942178641DB5DAC5000FB4B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 942178631DB5DAC5000FB4B8 /* Assets.xcassets */; };
 		942178671DB5DAC5000FB4B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 942178651DB5DAC5000FB4B8 /* Main.storyboard */; };
+		943180A11DF9C00F0055AC30 /* Sentiment Analysis Dataset.csv in Resources */ = {isa = PBXBuildFile; fileRef = 9431809F1DF9C00F0055AC30 /* Sentiment Analysis Dataset.csv */; };
+		943180A21DF9C00F0055AC30 /* unigrams.txt in Resources */ = {isa = PBXBuildFile; fileRef = 943180A01DF9C00F0055AC30 /* unigrams.txt */; };
 		943FCC001DE13DC70038179F /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943FCBFF1DE13DC70038179F /* DetailsViewController.swift */; };
-		9442E10A1DE142840024B42E /* MessageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442E1091DE142840024B42E /* MessageTableCell.swift */; };
 		9442E1481DE2AB5D0024B42E /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9442E1471DE2AB5D0024B42E /* ContactsManager.swift */; };
 		94559B001DF6F94E0037914A /* PythonScriptHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94559AFF1DF6F94E0037914A /* PythonScriptHelper.swift */; };
 		94559B121DF7024A0037914A /* test.py in Resources */ = {isa = PBXBuildFile; fileRef = 94559B111DF7024A0037914A /* test.py */; };
 		946D8B041DF8FA8200E8F5B0 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946D8B031DF8FA8200E8F5B0 /* SwiftyJSON.swift */; };
+		946D8B3C1DF9122300E8F5B0 /* feature_vector.py in Resources */ = {isa = PBXBuildFile; fileRef = 946D8B391DF9122300E8F5B0 /* feature_vector.py */; };
+		946D8B3D1DF9122300E8F5B0 /* parse_train.py in Resources */ = {isa = PBXBuildFile; fileRef = 946D8B3A1DF9122300E8F5B0 /* parse_train.py */; };
+		946D8B3E1DF9122300E8F5B0 /* process_training.py in Resources */ = {isa = PBXBuildFile; fileRef = 946D8B3B1DF9122300E8F5B0 /* process_training.py */; };
 		94B7514A1DE65BCE00BE075D /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B751491DE65BCE00BE075D /* FlippedClipView.swift */; };
 		94B7515C1DE65D7100BE075D /* MessageStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B7515B1DE65D7100BE075D /* MessageStatistics.swift */; };
 		94E1FBA31DE64BE10073427E /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E1FBA21DE64BE10073427E /* MainWindowController.swift */; };
 		94FAF8801DE037F500431955 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FAF85D1DE037AA00431955 /* GRDB.framework */; };
 		94FAF8821DE040A200431955 /* MessagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF8811DE040A200431955 /* MessagesListViewController.swift */; };
 		94FAF8881DE1382A00431955 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF8871DE1382A00431955 /* ConversationsViewController.swift */; };
+		94FC44951DF93DBC00CE8F37 /* MessageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC44941DF93DBC00CE8F37 /* MessageTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,19 +167,24 @@
 		942178661DB5DAC5000FB4B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		942178681DB5DAC5000FB4B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9421795A1DB5DF49000FB4B8 /* GRDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GRDB.framework; path = Carthage/Build/Mac/GRDB.framework; sourceTree = "<group>"; };
+		9431809F1DF9C00F0055AC30 /* Sentiment Analysis Dataset.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "Sentiment Analysis Dataset.csv"; path = "../../../Sentiment Analysis Dataset.csv"; sourceTree = "<group>"; };
+		943180A01DF9C00F0055AC30 /* unigrams.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = unigrams.txt; path = ../../../unigrams.txt; sourceTree = "<group>"; };
 		943FCBFF1DE13DC70038179F /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		9442E1091DE142840024B42E /* MessageTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableCell.swift; sourceTree = "<group>"; };
 		9442E1471DE2AB5D0024B42E /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
 		9442E1491DE2AB6A0024B42E /* MessagesTestMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MessagesTestMac.entitlements; sourceTree = "<group>"; };
 		94559AFF1DF6F94E0037914A /* PythonScriptHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PythonScriptHelper.swift; sourceTree = "<group>"; };
 		94559B111DF7024A0037914A /* test.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = test.py; sourceTree = "<group>"; };
 		946D8B031DF8FA8200E8F5B0 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		946D8B391DF9122300E8F5B0 /* feature_vector.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = feature_vector.py; path = ../../../feature_vector.py; sourceTree = "<group>"; };
+		946D8B3A1DF9122300E8F5B0 /* parse_train.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = parse_train.py; path = ../../../parse_train.py; sourceTree = "<group>"; };
+		946D8B3B1DF9122300E8F5B0 /* process_training.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = process_training.py; path = ../../../process_training.py; sourceTree = "<group>"; };
 		94B751491DE65BCE00BE075D /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		94B7515B1DE65D7100BE075D /* MessageStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageStatistics.swift; sourceTree = "<group>"; };
 		94E1FBA21DE64BE10073427E /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		94FAF8451DE037AA00431955 /* GRDB.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRDB.xcodeproj; path = ../../GRDB.swift/GRDB.xcodeproj; sourceTree = "<group>"; };
 		94FAF8811DE040A200431955 /* MessagesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesListViewController.swift; sourceTree = "<group>"; };
 		94FAF8871DE1382A00431955 /* ConversationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsViewController.swift; sourceTree = "<group>"; };
+		94FC44941DF93DBC00CE8F37 /* MessageTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,7 +225,6 @@
 				94FAF8811DE040A200431955 /* MessagesListViewController.swift */,
 				94FAF8871DE1382A00431955 /* ConversationsViewController.swift */,
 				943FCBFF1DE13DC70038179F /* DetailsViewController.swift */,
-				9442E1091DE142840024B42E /* MessageTableCell.swift */,
 				9442E1471DE2AB5D0024B42E /* ContactsManager.swift */,
 				94E1FBA21DE64BE10073427E /* MainWindowController.swift */,
 				94B7515B1DE65D7100BE075D /* MessageStatistics.swift */,
@@ -225,7 +234,13 @@
 				942178681DB5DAC5000FB4B8 /* Info.plist */,
 				94FAF8451DE037AA00431955 /* GRDB.xcodeproj */,
 				94559AFF1DF6F94E0037914A /* PythonScriptHelper.swift */,
+				946D8B391DF9122300E8F5B0 /* feature_vector.py */,
+				946D8B3A1DF9122300E8F5B0 /* parse_train.py */,
+				9431809F1DF9C00F0055AC30 /* Sentiment Analysis Dataset.csv */,
+				943180A01DF9C00F0055AC30 /* unigrams.txt */,
+				946D8B3B1DF9122300E8F5B0 /* process_training.py */,
 				94559B111DF7024A0037914A /* test.py */,
+				94FC44941DF93DBC00CE8F37 /* MessageTableCell.swift */,
 				946D8B031DF8FA8200E8F5B0 /* SwiftyJSON.swift */,
 			);
 			path = MessagesTestMac;
@@ -456,7 +471,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				943180A21DF9C00F0055AC30 /* unigrams.txt in Resources */,
 				94559B121DF7024A0037914A /* test.py in Resources */,
+				946D8B3C1DF9122300E8F5B0 /* feature_vector.py in Resources */,
+				946D8B3D1DF9122300E8F5B0 /* parse_train.py in Resources */,
+				946D8B3E1DF9122300E8F5B0 /* process_training.py in Resources */,
+				943180A11DF9C00F0055AC30 /* Sentiment Analysis Dataset.csv in Resources */,
 				942178641DB5DAC5000FB4B8 /* Assets.xcassets in Resources */,
 				942178671DB5DAC5000FB4B8 /* Main.storyboard in Resources */,
 			);
@@ -471,9 +491,9 @@
 			files = (
 				94B7515C1DE65D7100BE075D /* MessageStatistics.swift in Sources */,
 				942178621DB5DAC5000FB4B8 /* MainSplitViewController.swift in Sources */,
+				94FC44951DF93DBC00CE8F37 /* MessageTableCell.swift in Sources */,
 				942178601DB5DAC5000FB4B8 /* AppDelegate.swift in Sources */,
 				946D8B041DF8FA8200E8F5B0 /* SwiftyJSON.swift in Sources */,
-				9442E10A1DE142840024B42E /* MessageTableCell.swift in Sources */,
 				94FAF8821DE040A200431955 /* MessagesListViewController.swift in Sources */,
 				94FAF8881DE1382A00431955 /* ConversationsViewController.swift in Sources */,
 				94B7514A1DE65BCE00BE075D /* FlippedClipView.swift in Sources */,
