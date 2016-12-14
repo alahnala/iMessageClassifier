@@ -9,6 +9,33 @@
 import Foundation
 
 class PythonScriptHelper {
+    class var pythonPath: String {
+        get {
+            let defaults = UserDefaults.standard
+            if let path = defaults.string(forKey: "Python Path") {
+                return path
+            } else {
+                let task = Process()
+                task.launchPath = "/usr/bin/env"
+                task.arguments = ["which", "python"]
+                let pipe = Pipe()
+                task.standardOutput = pipe
+                task.standardError = pipe
+                task.launch()
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                let pythonPath = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
+                task.waitUntilExit()
+                if pythonPath != nil {
+                    return pythonPath!
+                } else {
+                    return "/usr/bin/python"
+                }
+            }
+        } set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "Python Path")
+        }
+    }
     func saveToFile(data: Array<Dictionary<String, NSObject>>) {
         
         func getDocumentsDirectory() -> URL {
@@ -28,17 +55,17 @@ class PythonScriptHelper {
             print("Failed to write \(outputFilename). Error: \(error.localizedDescription)")
         }
     }
-    func runScript(completionHandler: (String?) -> Void) {
+    func runScript(completionHandler: (String?, String?) -> Void) {
         guard let scriptPath = Bundle.main.path(forResource: "feature_vector", ofType: "py") else {
-            completionHandler(nil)
+            completionHandler(nil, "Did not find feature_vector.py")
             return
         }
         guard let sentimentAnalysisDatasetFilePath = Bundle.main.path(forResource: "Sentiment Analysis Dataset", ofType: "csv") else {
-            completionHandler(nil)
+            completionHandler(nil, "Did not find Sentiment Analysis Dataset.csv")
             return
         }
         guard let unigramsFilePath = Bundle.main.path(forResource: "unigrams", ofType: "txt") else {
-            completionHandler(nil)
+            completionHandler(nil, "Did not find unigrams.txt")
             return
         }
         
@@ -62,7 +89,7 @@ class PythonScriptHelper {
         let errPipe = Pipe();
         
         let task = Process()
-        task.launchPath = "/usr/bin/python"
+        task.launchPath = PythonScriptHelper.pythonPath
         task.arguments = arguments
         task.standardInput = Pipe()
         task.standardOutput = outPipe
@@ -79,13 +106,12 @@ class PythonScriptHelper {
             let errOutput = String(data: errData, encoding: String.Encoding.ascii)
             let output = String(data: data, encoding: String.Encoding.ascii)
             print(output!)
-            print(errOutput!)
-            completionHandler(nil)
+            completionHandler(nil, "ERROR: \(exitCode)\n \(errOutput ?? "")")
             return
         }
         
         let output = String(data: data, encoding: String.Encoding.ascii)
-        completionHandler(output)
+        completionHandler(output, nil)
     }
     func getLabels() -> [Int64: BinarySentiment] {
         let inputFilename = "labeled_messages.json"
