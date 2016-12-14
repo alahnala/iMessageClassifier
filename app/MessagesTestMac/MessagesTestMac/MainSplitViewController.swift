@@ -199,7 +199,7 @@ class MainSplitViewController: NSSplitViewController {
         conversationsViewController.delegate = self
         
         var config = Configuration()
-        config.readonly = true
+//        config.readonly = true
         config.trace = { print($0) }
         do {
             let homeDirectory = NSHomeDirectory()
