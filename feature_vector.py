@@ -135,17 +135,3 @@ for message in messages:
     output_data.append(output_message)
 
 json_file.write(json.dumps(output_data))
-
-
-#make feature vector for 
-
-
-
-
-
-    
-
-
-
-
-
