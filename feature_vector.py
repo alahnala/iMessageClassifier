@@ -109,8 +109,14 @@ for message in messages:
     line = ""
     sum = 0
     for i, x in enumerate(inds[j]):
-        sum += training_labels[x]*float(dists[j][i])
+        print training_labels[x]
+        print float(dists[j][i])
+        if float(dists[j][i]) == 0:
+            sum += training_labels[x]*(1/.00000001)
+        else:
+            sum += training_labels[x]*(1/float(dists[j][i]))
     norm = sum
+    print norm
 
     if norm >= 5:
         sentiment = "Positive"
