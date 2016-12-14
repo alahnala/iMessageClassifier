@@ -247,13 +247,18 @@ class MainSplitViewController: NSSplitViewController {
     func labelSentimentInMessages(labels: [Int64: BinarySentiment]) {
         var positiveCount = 0
         var negativeCount = 0
+        var neutralCount = 0
         for message in self.messages {
             if let rowid = message.rowID {
                 if let sentiment = labels[rowid] {
                     message.sentiment = sentiment
                     if sentiment == .Positive {
                         positiveCount += 1
-                    } else {
+                    }
+                    else if sentiment == .Neutral {
+                        neutralCount += 1
+                    }
+                    else {
                         negativeCount += 1
                     }
                 }
@@ -262,6 +267,7 @@ class MainSplitViewController: NSSplitViewController {
         self.messagesListViewController.didUpdateSenetimentLabels()
         self.detailsViewController.messageStatistics?.numberOfPositiveMessages = positiveCount
         self.detailsViewController.messageStatistics?.numberOfNegativeMessages = negativeCount
+        self.detailsViewController.messageStatistics?.numberOfNeutralMessages = neutralCount
         self.detailsViewController.updateDetails()
     }
 }
@@ -269,6 +275,7 @@ class MainSplitViewController: NSSplitViewController {
 enum BinarySentiment {
     case Positive
     case Negative
+    case Neutral
 }
 
 extension MainSplitViewController: ConversationsViewControllerDelegate {

@@ -75,7 +75,8 @@ class DetailsViewController: NSViewController, NSTableViewDataSource, NSTableVie
             if messageStatistics!.numberOfPositiveMessages != nil && messageStatistics!.numberOfPositiveMessages != nil {
                 let positivePercentage = messageStatistics!.numberOfPositiveMessages! * 100 / count
                 let negativePercentage = messageStatistics!.numberOfNegativeMessages! * 100 / count
-                positiveNegativeText = " (\(positivePercentage)% positive, \(negativePercentage)% negative)"
+                let neutralPercentage = messageStatistics!.numberOfNeutralMessages! * 100 / count
+                positiveNegativeText = " (\(positivePercentage)% positive, \(negativePercentage)% negative, \(neutralPercentage)% neutral)"
             }
             
             messageCountLabel.stringValue = "\(count) message\(count == 1 ? "" : "s")\(positiveNegativeText)"

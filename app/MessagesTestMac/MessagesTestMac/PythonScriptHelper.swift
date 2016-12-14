@@ -62,7 +62,7 @@ class PythonScriptHelper {
         let errPipe = Pipe();
         
         let task = Process()
-        task.launchPath = "/usr/local/bin/python2"
+        task.launchPath = "/usr/bin/python"
         task.arguments = arguments
         task.standardInput = Pipe()
         task.standardOutput = outPipe
@@ -102,7 +102,11 @@ class PythonScriptHelper {
                     var sentiment: BinarySentiment
                     if jsonMessage["sentiment"].stringValue == "Positive" {
                         sentiment = .Positive
-                    } else {
+                    }
+                    else if jsonMessage["sentiment"].stringValue == "Neutral" {
+                        sentiment = .Neutral
+                    }
+                    else {
                         sentiment = .Negative
                     }
                     let rowid = jsonMessage["rowid"].int64Value

@@ -99,6 +99,8 @@ extension MessagesListViewController : NSTableViewDelegate {
                             cell.sentimentColor = NSColor(red:0.58, green:0.75, blue:0.49, alpha:1.00)
                         case .Negative:
                             cell.sentimentColor = NSColor(red:0.75, green:0.22, blue:0.35, alpha:1.00)
+                        case .Neutral:
+                            cell.sentimentColor = NSColor(red:0.5, green:0.5, blue:0.5, alpha:1.00)
                         }
                     }
                     

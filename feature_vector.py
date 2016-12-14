@@ -93,10 +93,11 @@ def mydist(x, y, **kwargs):
 
 X = np.array(training_vector)
 Y = np.array(training_labels)
-nbrs = KNeighborsClassifier(n_neighbors=1, algorithm='ball_tree',metric=mydist, metric_params={"power": 2})
+nbrs = KNeighborsClassifier(n_neighbors=5, algorithm='ball_tree',metric=mydist, metric_params={"power": 2})
 nbrs.fit(X, Y)
 Z = np.array(test_vector)
 dists, inds = nbrs.kneighbors(Z)
+
 
 text_file = open('labeled_messages.txt','w')
 json_file = open('labeled_messages.json','w')
@@ -106,10 +107,17 @@ for message in messages:
     output_message = {}
     output_message["rowid"] = message
     line = ""
-    if training_labels[inds[j]] == 0:
+    sum = 0
+    for i, x in enumerate(inds[j]):
+        sum += training_labels[x]*float(dists[j][i])
+    norm = sum
+
+    if norm >= 5:
+        sentiment = "Positive"
+    elif norm >= .001 and norm < .8:
         sentiment = "Negative"
     else:
-       sentiment = "Positive"
+        sentiment = "Neutral"
     output_message["sentiment"] = sentiment
     line += messages[message] + ' ' + sentiment
     line += '\n'
