@@ -1,4 +1,4 @@
-import csv, sys, json, nltk
+import csv, sys, json
 
 filename = sys.argv[1]
 answers = open(sys.argv[2], 'r').read().split("\n") 
