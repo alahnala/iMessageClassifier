@@ -686,13 +686,30 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
                                         <connections>
-                                            <action selector="searchMessages:" target="B8D-0N-5wS" id="gHp-j0-EeK"/>
+                                            <action selector="searchMessages:" target="B8D-0N-5wS" id="82A-ut-UNb"/>
                                         </connections>
                                     </searchField>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="cB5-Ay-rY9"/>
+                                <toolbarItem implicitItemIdentifier="4D5786DB-1274-406F-8CD1-D9EC4D513C73" label="Custom View" paletteLabel="Custom View" id="KuV-jj-1FD">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="82" height="32"/>
+                                    <size key="maxSize" width="176" height="43"/>
+                                    <button key="view" verticalHuggingPriority="750" id="Bya-bV-jRE">
+                                        <rect key="frame" x="0.0" y="14" width="176" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Open Chat Database" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Uk-n2-c9f">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="selectChatDatabase:" target="B8D-0N-5wS" id="nMr-Wl-bUQ"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
+                                <toolbarItem reference="KuV-jj-1FD"/>
                                 <toolbarItem reference="cB5-Ay-rY9"/>
                                 <toolbarItem reference="nqf-7A-x5A"/>
                             </defaultToolbarItems>

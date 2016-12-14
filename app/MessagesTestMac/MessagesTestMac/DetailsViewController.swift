@@ -14,10 +14,10 @@ class DetailsViewController: NSViewController, NSTableViewDataSource, NSTableVie
         didSet {
             if messageStatistics != nil {
                 messageCountLabel.isHidden = false
-                updateDetails()
             } else {
                 messageCountLabel.isHidden = true
             }
+            updateDetails()
         }
     }
     var chat: Chat? {

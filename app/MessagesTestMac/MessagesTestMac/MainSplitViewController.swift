@@ -159,6 +159,14 @@ class Message: Record {
 
 class MainSplitViewController: NSSplitViewController {
     
+    var databasePath: String? {
+        didSet {
+            loadConversations()
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(databasePath, forKey: "DatabasePath")
+        }
+    }
+    
     var handles = [Handle]() {
         didSet {
 //            conversationsViewController.handles = handles
@@ -192,40 +200,59 @@ class MainSplitViewController: NSSplitViewController {
         }
     }
     
+    class var defaultDatabasePath: String {
+        let homeDirectory = NSHomeDirectory()
+        return "\(homeDirectory)/Library/Messages/chat.db"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
         conversationsViewController.delegate = self
         
-        var config = Configuration()
-//        config.readonly = true
-        config.trace = { print($0) }
-        do {
-            let homeDirectory = NSHomeDirectory()
-            dbQueue = try DatabaseQueue(path: "\(homeDirectory)/Desktop/chat.db", configuration: config)
-            
-//            handles = dbQueue.inDatabase { db in
-//                Handle.fetchAll(db, "SELECT * FROM handle")
-//            }
-            chats = dbQueue.inDatabase { db in
-                Chat.fetchAll(db, "SELECT * FROM chat")
-            }
-            for chat in chats {
-                chat.handles = dbQueue.inDatabase { db in
-                    Handle.fetchAll(db, "SELECT * FROM handle H WHERE H.ROWID in (SELECT handle_id from chat_handle_join B WHERE B.chat_id = ?)", arguments: [chat.rowID])
-                }
-            }
-            
-        } catch {
-            print(error)
+        let userDefaults = UserDefaults.standard
+        if let savedPath = userDefaults.value(forKey: "DatabasePath") as? String {
+            databasePath = savedPath
+        } else {
+            databasePath = MainSplitViewController.defaultDatabasePath
         }
+        loadConversations()
     }
     
     @IBAction func searchMessages(sender: NSSearchField) {
         print(sender.stringValue)
     }
 
+    func loadConversations() {
+        chats = []
+        messages = []
+        detailsViewController.chat = nil
+        detailsViewController.messageStatistics = nil
+        if databasePath != nil {
+            // check if file exists
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: databasePath!) {
+                var config = Configuration()
+                // config.readonly = true
+                // config.trace = { print($0) }
+                do {
+                    
+                    dbQueue = try DatabaseQueue(path: databasePath!, configuration: config)
+                    chats = dbQueue.inDatabase { db in
+                        Chat.fetchAll(db, "SELECT * FROM chat")
+                    }
+                    for chat in chats {
+                        chat.handles = dbQueue.inDatabase { db in
+                            Handle.fetchAll(db, "SELECT * FROM handle H WHERE H.ROWID in (SELECT handle_id from chat_handle_join B WHERE B.chat_id = ?)", arguments: [chat.rowID])
+                        }
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+        }
+    }
     
     func messagesFor(handle: Handle) -> [Message] {
         let fetchedMessages = dbQueue.inDatabase { db in
