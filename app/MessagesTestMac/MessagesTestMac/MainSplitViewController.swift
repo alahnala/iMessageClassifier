@@ -200,6 +200,11 @@ class MainSplitViewController: NSSplitViewController {
         }
     }
     
+    lazy var errorViewController: ErrorViewController = {
+        return self.storyboard!.instantiateController(withIdentifier: "ErrorViewController")
+            as! ErrorViewController
+    }()
+    
     class var defaultDatabasePath: String {
         let homeDirectory = NSHomeDirectory()
         return "\(homeDirectory)/Library/Messages/chat.db"
@@ -317,7 +322,13 @@ extension MainSplitViewController: ConversationsViewControllerDelegate {
         }
         DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
             pythonHelper.saveToFile(data: messagesAsJSONArray)
-            pythonHelper.runScript { output in
+            pythonHelper.runScript { output, error in
+                if error != nil {
+                    DispatchQueue.main.async {
+                        self.presentViewControllerAsSheet(self.errorViewController)
+                        self.errorViewController.errorLabel.stringValue = error!
+                    }
+                }
                 if output != nil {
                     print(output!)
                     let sentimentLabels = pythonHelper.getLabels()

@@ -55,17 +55,17 @@ class PythonScriptHelper {
             print("Failed to write \(outputFilename). Error: \(error.localizedDescription)")
         }
     }
-    func runScript(completionHandler: (String?) -> Void) {
+    func runScript(completionHandler: (String?, String?) -> Void) {
         guard let scriptPath = Bundle.main.path(forResource: "feature_vector", ofType: "py") else {
-            completionHandler(nil)
+            completionHandler(nil, "Did not find feature_vector.py")
             return
         }
         guard let sentimentAnalysisDatasetFilePath = Bundle.main.path(forResource: "Sentiment Analysis Dataset", ofType: "csv") else {
-            completionHandler(nil)
+            completionHandler(nil, "Did not find Sentiment Analysis Dataset.csv")
             return
         }
         guard let unigramsFilePath = Bundle.main.path(forResource: "unigrams", ofType: "txt") else {
-            completionHandler(nil)
+            completionHandler(nil, "Did not find unigrams.txt")
             return
         }
         
@@ -106,13 +106,12 @@ class PythonScriptHelper {
             let errOutput = String(data: errData, encoding: String.Encoding.ascii)
             let output = String(data: data, encoding: String.Encoding.ascii)
             print(output!)
-            print(errOutput!)
-            completionHandler(nil)
+            completionHandler(nil, "ERROR: \(exitCode)\n \(errOutput ?? "")")
             return
         }
         
         let output = String(data: data, encoding: String.Encoding.ascii)
-        completionHandler(output)
+        completionHandler(output, nil)
     }
     func getLabels() -> [Int64: BinarySentiment] {
         let inputFilename = "labeled_messages.json"
