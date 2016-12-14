@@ -109,12 +109,21 @@ for message in messages:
     line = ""
     sum = 0
     for i, x in enumerate(inds[j]):
-        sum += training_labels[x]*float(dists[j][i])
+        mcand = 0
+        if training_labels[x] == 0:
+            mcand = -1
+        else:
+            mcand = 1
+        if float(dists[j][i]) == 0:
+            sum += mcand*(1/.0000000001)
+        else:
+            sum += mcand*(1/float(dists[j][i]))
     norm = sum
+    print norm
 
-    if norm >= 5:
+    if norm >= -100:
         sentiment = "Positive"
-    elif norm >= .001 and norm < .8:
+    elif norm <= -400:
         sentiment = "Negative"
     else:
         sentiment = "Neutral"
