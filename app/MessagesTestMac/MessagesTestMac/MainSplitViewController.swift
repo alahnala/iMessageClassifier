@@ -207,10 +207,9 @@ class MainSplitViewController: NSSplitViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         conversationsViewController.delegate = self
-        
+
         let userDefaults = UserDefaults.standard
         if let savedPath = userDefaults.value(forKey: "DatabasePath") as? String {
             databasePath = savedPath

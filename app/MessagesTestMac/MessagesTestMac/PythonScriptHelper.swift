@@ -9,6 +9,33 @@
 import Foundation
 
 class PythonScriptHelper {
+    class var pythonPath: String {
+        get {
+            let defaults = UserDefaults.standard
+            if let path = defaults.string(forKey: "Python Path") {
+                return path
+            } else {
+                let task = Process()
+                task.launchPath = "/usr/bin/env"
+                task.arguments = ["which", "python"]
+                let pipe = Pipe()
+                task.standardOutput = pipe
+                task.standardError = pipe
+                task.launch()
+                let data = pipe.fileHandleForReading.readDataToEndOfFile()
+                let pythonPath = String(data: data, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
+                task.waitUntilExit()
+                if pythonPath != nil {
+                    return pythonPath!
+                } else {
+                    return "/usr/bin/python"
+                }
+            }
+        } set {
+            let defaults = UserDefaults.standard
+            defaults.set(newValue, forKey: "Python Path")
+        }
+    }
     func saveToFile(data: Array<Dictionary<String, NSObject>>) {
         
         func getDocumentsDirectory() -> URL {
@@ -62,7 +89,7 @@ class PythonScriptHelper {
         let errPipe = Pipe();
         
         let task = Process()
-        task.launchPath = "/usr/bin/python"
+        task.launchPath = PythonScriptHelper.pythonPath
         task.arguments = arguments
         task.standardInput = Pipe()
         task.standardOutput = outPipe
