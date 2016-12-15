@@ -1,11 +1,18 @@
 We makin' some kewl stuff.
 
-Running `feature_vector.py`:
-```
-python feature_vector.py messages.json "Sentiment Analysis Dataset.csv" unigrams.txt
-```
+# Mac application
 
-Running Mac application:
+## Requirements
+
+* macOS 10.11 or later
+* Python 2 and nltk package
+* (Optionally) Xcode 8.1 to compile in Xcode
+
+## Files
+
+Source used for the Mac application are in the `app` directory. The compiled application is in the root directory for the project, called `MessagesSentiments.app`. 
+
+## Running Mac application:
 
 * Option 1: launch compiled app:
   * Double-click on `MessagesSentiments.app`
@@ -24,8 +31,39 @@ Running Mac application:
   * Actual iMessage database for the user is located at `~/Libarary/Messages/chat.db`.
 
 
-Running `get_accuracy.py`:
-* Run the following command: 
+# Python classifier
+
+## Requirements
+
+* Python 2 and nltk package
+
+## Files
+
+Source files used for the the evaluation are in the root directory for the project, specifically `feature_vector.py`, `process_training.py` and `parse_train.py`. In addition, the classifier requires a JSON file with messagese, an example of which is found in `datasetes/messages.json` and a labels file, as well as `Sentiment Analysis Dataset.csv` and `unigrams.txt`, both of which are in the root directory for the project.
+
+## Running `feature_vector.py`
+
+* Execute the following command in Terminal: 
+```
+$ python feature_vector.py messages.json "Sentiment Analysis Dataset.csv" unigrams.txt
+```
+
+
+# Evaluation
+
+## Requirements
+
+* Python 2 and nltk package
+
+## Files
+
+Source file used for the the evaluation is in the root directory for the project, called `get_accuracy.py`. In addition, evaluation requires a predictions file, an example of which is found in `datasetes/labeled_messages.json` and a labels file, an example of which is found in `datasets/xinrui_labels.txt`.
+
+## Running `get_accuracy.py`
+
+* Execute the following command in Terminal: 
 ```
 $ python get_accuracy.py <predictions file> <labels file> 
 ```
+
+# Datasets
