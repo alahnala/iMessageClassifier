@@ -36,6 +36,12 @@ messages_filename = sys.argv[1]
 sentiment_analysis_dataset_filename = sys.argv[2]
 unigrams_filename = sys.argv[3]
 
+if len(sys.argv) > 4:
+    temp_dir = sys.argv[4]
+else:
+    # current directory
+    temp_dir = "."
+
 sentiment, tweets = get_training_data2(sentiment_analysis_dataset_filename)
 corpus = make_corpus(tweets)
 unigram_scores = get_unigram_scores(corpus, unigrams_filename)
@@ -99,8 +105,8 @@ Z = np.array(test_vector)
 dists, inds = nbrs.kneighbors(Z)
 
 
-text_file = open('labeled_messages.txt','w')
-json_file = open('labeled_messages.json','w')
+text_file = open(temp_dir + '/labeled_messages.txt','w')
+json_file = open(temp_dir + '/labeled_messages.json','w')
 j = 0
 output_data = []
 for message in messages:

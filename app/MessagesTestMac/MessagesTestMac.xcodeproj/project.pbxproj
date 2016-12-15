@@ -23,16 +23,31 @@
 		946D8B3E1DF9122300E8F5B0 /* process_training.py in Resources */ = {isa = PBXBuildFile; fileRef = 946D8B3B1DF9122300E8F5B0 /* process_training.py */; };
 		94867EA41E0202A100A9D097 /* PythonPathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94867EA31E0202A100A9D097 /* PythonPathViewController.swift */; };
 		94867EA61E02090600A9D097 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94867EA51E02090600A9D097 /* ErrorViewController.swift */; };
+		94867EAE1E02159300A9D097 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FAF85D1DE037AA00431955 /* GRDB.framework */; };
+		94867EAF1E02159300A9D097 /* GRDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 94FAF85D1DE037AA00431955 /* GRDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		94B7514A1DE65BCE00BE075D /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B751491DE65BCE00BE075D /* FlippedClipView.swift */; };
 		94B7515C1DE65D7100BE075D /* MessageStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B7515B1DE65D7100BE075D /* MessageStatistics.swift */; };
 		94E1FBA31DE64BE10073427E /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E1FBA21DE64BE10073427E /* MainWindowController.swift */; };
-		94FAF8801DE037F500431955 /* GRDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94FAF85D1DE037AA00431955 /* GRDB.framework */; };
 		94FAF8821DE040A200431955 /* MessagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF8811DE040A200431955 /* MessagesListViewController.swift */; };
 		94FAF8881DE1382A00431955 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FAF8871DE1382A00431955 /* ConversationsViewController.swift */; };
 		94FC44951DF93DBC00CE8F37 /* MessageTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FC44941DF93DBC00CE8F37 /* MessageTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		94867EA91E020FFA00A9D097 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94FAF8451DE037AA00431955 /* GRDB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DC3773F219C8CBB3004FCF85;
+			remoteInfo = GRDBOSX;
+		};
+		94867EB01E02159300A9D097 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94FAF8451DE037AA00431955 /* GRDB.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DC3773F219C8CBB3004FCF85;
+			remoteInfo = GRDBOSX;
+		};
 		94FAF85C1DE037AA00431955 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 94FAF8451DE037AA00431955 /* GRDB.xcodeproj */;
@@ -152,14 +167,21 @@
 			remoteGlobalIDString = 565490A01D5A4798005622CB;
 			remoteInfo = GRDBWatchOS;
 		};
-		94FAF87E1DE037EC00431955 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 94FAF8451DE037AA00431955 /* GRDB.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DC3773F219C8CBB3004FCF85;
-			remoteInfo = GRDBOSX;
-		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		94867EB21E02159300A9D097 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				94867EAF1E02159300A9D097 /* GRDB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9421785C1DB5DAC5000FB4B8 /* MessagesTestMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessagesTestMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,7 +218,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94FAF8801DE037F500431955 /* GRDB.framework in Frameworks */,
+				94867EAE1E02159300A9D097 /* GRDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,11 +316,13 @@
 				942178581DB5DAC5000FB4B8 /* Sources */,
 				942178591DB5DAC5000FB4B8 /* Frameworks */,
 				9421785A1DB5DAC5000FB4B8 /* Resources */,
+				94867EB21E02159300A9D097 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				94FAF87F1DE037EC00431955 /* PBXTargetDependency */,
+				94867EAA1E020FFA00A9D097 /* PBXTargetDependency */,
+				94867EB11E02159300A9D097 /* PBXTargetDependency */,
 			);
 			name = MessagesTestMac;
 			productName = MessagesTestMac;
@@ -515,10 +539,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		94FAF87F1DE037EC00431955 /* PBXTargetDependency */ = {
+		94867EAA1E020FFA00A9D097 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = GRDBOSX;
-			targetProxy = 94FAF87E1DE037EC00431955 /* PBXContainerItemProxy */;
+			targetProxy = 94867EA91E020FFA00A9D097 /* PBXContainerItemProxy */;
+		};
+		94867EB11E02159300A9D097 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = GRDBOSX;
+			targetProxy = 94867EB01E02159300A9D097 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -627,6 +656,7 @@
 		9421786C1DB5DAC5000FB4B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MessagesTestMac/MessagesTestMac.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -645,6 +675,7 @@
 		9421786D1DB5DAC5000FB4B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MessagesTestMac/MessagesTestMac.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;

@@ -71,11 +71,13 @@ class PythonScriptHelper {
         
         let homeDirectory = NSHomeDirectory()
         let messagesFilePath = "\(homeDirectory)/Documents/messages.json"
+        let temporaryDirectory = NSTemporaryDirectory()
         
         var arguments = [scriptPath]
         arguments.append(messagesFilePath)
         arguments.append(sentimentAnalysisDatasetFilePath)
         arguments.append(unigramsFilePath)
+        arguments.append(temporaryDirectory)
 //        arguments.append("--dict")
 //        arguments.append(dictionaryPath)
 //        arguments.append("--pattern")
@@ -117,9 +119,11 @@ class PythonScriptHelper {
         let inputFilename = "labeled_messages.json"
         var labels = [Int64: BinarySentiment]()
         do {
-            let fileManager = FileManager.default
-            let currentWorkingDirectory = fileManager.currentDirectoryPath
-            let pathString = "\(currentWorkingDirectory)/\(inputFilename)"
+            // let fileManager = FileManager.default
+            // let currentWorkingDirectory = fileManager.currentDirectoryPath
+            let temporaryDirectory = NSTemporaryDirectory()
+            print(temporaryDirectory)
+            let pathString = "\(temporaryDirectory)/\(inputFilename)"
             let path = URL(fileURLWithPath: pathString)
             let jsonData = try Data(contentsOf: path)
             let json = JSON(data: jsonData)

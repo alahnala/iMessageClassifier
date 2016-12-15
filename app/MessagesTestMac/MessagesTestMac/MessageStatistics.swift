@@ -313,8 +313,8 @@ class MessageStatistics {
         numberOfWords = wordCount
         numberOfEmojis = emojiCount
         let sortedWords = words.sorted { $0.value > $1.value }
-        wordCounts = Array(sortedWords.prefix(100)) as! [(word: String, count: Int)]
+        wordCounts = Array(sortedWords.prefix(100)) as [(String, Int)]
         let sortedEmojis = emojis.sorted { $0.value > $1.value }
-        emojiCounts = Array(sortedEmojis.prefix(20)) as! [(emoji: String, count: Int)]
+        emojiCounts = Array(sortedEmojis.prefix(20)) as [(String, Int)]
     }
 }
