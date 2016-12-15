@@ -17,7 +17,7 @@ Running MessagesTestMac:
 
 Running `get_accuracy.py`:
 
-Run the following command: 
+* Run the following command: 
 ```
 $ python get_accuracy.py <predictions file> <labels file> 
 ```
