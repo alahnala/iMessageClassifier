@@ -15,3 +15,9 @@ Running MessagesTestMac:
 * Run
 * If unable to open the database, go to line 202 of MainSplitViewController.swift and comment out `config.readonly = true`. Run the app and it should work. Then uncomment `config.readonly = true` so at to avoid accidentally modifying the database.
 
+Running `get_accuracy.py`:
+
+Run the following command: 
+```
+$ python get_accuracy.py <predictions file> <labels file> 
+```
