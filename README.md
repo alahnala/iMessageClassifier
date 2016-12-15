@@ -28,7 +28,7 @@ Source used for the Mac application are in the `app` directory. The compiled app
 
 * Open chat database.
   * The sample database is provided in `datasets/chat.db`.
-  * Actual iMessage database for the user is located at `~/Libarary/Messages/chat.db`.
+  * Actual iMessage database for the user is located at `~/Libarary/Messages/chat.db`.
 
 
 # Python classifier
