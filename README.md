@@ -67,3 +67,10 @@ $ python get_accuracy.py <predictions file> <labels file>
 ```
 
 # Datasets
+
+Included in the `datasets` directory are
+
+* `chat.db`, a sample iMessages database that can be used in the Mac application.
+* `messages.json`, a sample JSON file of messages created by the Mac application and used by the Python classifier.
+* `labeled_messages.json`, a sample JSON file of sentiment labels created by the Python classifier and used by the Mac application.
+* `xinrui_labels.txt`, a text file with sentiment labels created by humans, used for the evaluation.
